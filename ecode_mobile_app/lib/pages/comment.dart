@@ -12,12 +12,23 @@ class Comment extends StatefulWidget {
 class _CommentState extends State<Comment> {
   TwitPage twitPage = TwitPage(); // Import TwitPage
   CommentPage commentPage = CommentPage(); // Import CommentPage
+  TextEditingController commentController = TextEditingController(); // Add this line to declare the controller
 
   @override
   void initState() {
     super.initState();
-    twitPage.getTwit(); // Fetch Twit data when the widget is initialized
-    commentPage.getComment(); // Fetch Comment data when the widget is initialized
+    twitPage.getTwit();
+    commentPage.getComment();
+  }
+
+  void addComment() {
+    String newComment = commentController.text.trim();
+    if (newComment.isNotEmpty) {
+      setState(() {
+        commentPage.comments.add(newComment);
+        commentController.clear();
+      });
+    }
   }
 
   @override
@@ -97,24 +108,42 @@ class _CommentState extends State<Comment> {
                     ),
                   ),
                   // List of comments using Card widget
-                  for (String comment in commentPage.comments)
+                  for (int index = 0; index < commentPage.comments.length; index++)
                     Card(
                       elevation: 3.0,
                       margin: EdgeInsets.symmetric(vertical: 8.0),
                       child: Padding(
                         padding: const EdgeInsets.all(12.0),
-                        child: Row(
+                        child: Column(
                           children: [
-                            CircleAvatar(
-                              backgroundImage:
-                              AssetImage('assets/profile.png'),
+                            Row(
+                              children: [
+                                CircleAvatar(
+                                  backgroundImage: AssetImage('assets/profile.png'),
+                                ),
+                                SizedBox(width: 8.0),
+                                Expanded(
+                                  child: Text(
+                                    commentPage.comments[index],
+                                    style: TextStyle(fontSize: 16),
+                                  ),
+                                ),
+                              ],
                             ),
-                            SizedBox(width: 8.0),
-                            Expanded(
-                              child: Text(
-                                comment,
-                                style: TextStyle(fontSize: 16),
-                              ),
+                            SizedBox(height: 8.0),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                IconButton(
+                                  icon: Icon(Icons.delete),
+                                  onPressed: () {
+                                    // Implement logic to delete the comment
+                                    setState(() {
+                                      commentPage.comments.removeAt(index);
+                                    });
+                                  },
+                                ),
+                              ],
                             ),
                           ],
                         ),
@@ -127,15 +156,13 @@ class _CommentState extends State<Comment> {
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: TextField(
+                controller: commentController,
                 decoration: InputDecoration(
                   hintText: 'Add a comment...',
                   border: OutlineInputBorder(),
                   suffixIcon: IconButton(
                     icon: Icon(Icons.send),
-                    onPressed: () {
-                      // Implement logic to add a new comment
-                      // You can update the 'comments' list or make an API call to store the comment.
-                    },
+                    onPressed: addComment,
                   ),
                 ),
               ),
