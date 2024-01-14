@@ -20,12 +20,12 @@ class _ChooseLocationState extends State<ChooseLocation> {
     WorldTime(url: 'Asia/Seoul', location: 'Seoul', flag: 'south_korea.png'),
     WorldTime(url: 'Asia/Jakarta', location: 'Jakarta', flag: 'indonesia.png'),
   ];
-
+  // index is going to represent whichever instance of the WorldTime location class we want to call the get time method on
   void updateTime(index) async {
     WorldTime instance = locations[index];
     await instance.getTime();
     // navigate to home screen
-    Navigator.pop(context, {
+    Navigator.pop(context, { // pop adalah kebalikan dari pushNamed
       'location': instance.location,
       'flag': instance.flag,
       'time': instance.time,
