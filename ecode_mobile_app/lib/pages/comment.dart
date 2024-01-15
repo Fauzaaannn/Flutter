@@ -119,7 +119,7 @@ class _CommentState extends State<Comment> {
                             Row(
                               children: [
                                 CircleAvatar(
-                                  backgroundImage: AssetImage('assets/profile.png'),
+                                  backgroundImage: AssetImage('assets/car.png'),
                                 ),
                                 SizedBox(width: 8.0),
                                 Expanded(
