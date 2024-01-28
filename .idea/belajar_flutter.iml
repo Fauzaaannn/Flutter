@@ -108,6 +108,21 @@
       <excludeFolder url="file://$MODULE_DIR$/ecode_mobile_app/.dart_tool" />
       <excludeFolder url="file://$MODULE_DIR$/ecode_mobile_app/.pub" />
       <excludeFolder url="file://$MODULE_DIR$/ecode_mobile_app/build" />
+      <excludeFolder url="file://$MODULE_DIR$/aplikasitest1/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/aplikasitest1/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/aplikasitest1/build" />
+      <excludeFolder url="file://$MODULE_DIR$/aplikasitest2/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/aplikasitest2/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/aplikasitest2/build" />
+      <excludeFolder url="file://$MODULE_DIR$/ecode_mobile_app/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/ecode_mobile_app/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/ecode_mobile_app/build" />
+      <excludeFolder url="file://$MODULE_DIR$/ojan_id/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/ojan_id/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/ojan_id/build" />
+      <excludeFolder url="file://$MODULE_DIR$/worldtime_app/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/worldtime_app/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/worldtime_app/build" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
