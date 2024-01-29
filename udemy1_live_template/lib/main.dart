@@ -15,6 +15,15 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+
+  String _value = 'Hello World';
+
+  void _onPressed() {
+    setState((){
+      _value = 'My Name is Fauzan';
+    });
+  }
+
   @override
   // BuildContext = this is the context of which this method is being run, whether it's startup, shut down, refresh, etc.
   Widget build(BuildContext context) {
@@ -26,8 +35,9 @@ class _MyAppState extends State<MyApp> {
         padding: EdgeInsets.all(32.0),
         child: Center(
           child: Column(
-            children: [
-              Text('Hello World')
+            children: <Widget> [
+              Text(_value),
+              ElevatedButton(onPressed: _onPressed, child: Text('Click me'))
             ],
           ),
         ),
