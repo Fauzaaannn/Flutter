@@ -1,0 +1,148 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "aplikasitest1",
+            "cwd": "aplikasitest1",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "aplikasitest1 (profile mode)",
+            "cwd": "aplikasitest1",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "aplikasitest1 (release mode)",
+            "cwd": "aplikasitest1",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+        {
+            "name": "aplikasitest2",
+            "cwd": "aplikasitest2",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "aplikasitest2 (profile mode)",
+            "cwd": "aplikasitest2",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "aplikasitest2 (release mode)",
+            "cwd": "aplikasitest2",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+        {
+            "name": "ecode_mobile_app",
+            "cwd": "ecode_mobile_app",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "ecode_mobile_app (profile mode)",
+            "cwd": "ecode_mobile_app",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "ecode_mobile_app (release mode)",
+            "cwd": "ecode_mobile_app",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+        {
+            "name": "ojan_id",
+            "cwd": "ojan_id",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "ojan_id (profile mode)",
+            "cwd": "ojan_id",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "ojan_id (release mode)",
+            "cwd": "ojan_id",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+        {
+            "name": "udemy1_live_template",
+            "cwd": "udemy1_live_template",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "udemy1_live_template (profile mode)",
+            "cwd": "udemy1_live_template",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "udemy1_live_template (release mode)",
+            "cwd": "udemy1_live_template",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+        {
+            "name": "udemy2_raisedbutton_parameters",
+            "cwd": "udemy2_raisedbutton_parameters",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "udemy2_raisedbutton_parameters (profile mode)",
+            "cwd": "udemy2_raisedbutton_parameters",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "udemy2_raisedbutton_parameters (release mode)",
+            "cwd": "udemy2_raisedbutton_parameters",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+        {
+            "name": "worldtime_app",
+            "cwd": "worldtime_app",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "worldtime_app (profile mode)",
+            "cwd": "worldtime_app",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "worldtime_app (release mode)",
+            "cwd": "worldtime_app",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        }
+    ]
+}
