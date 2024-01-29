@@ -7,6 +7,7 @@ void main() {
 }
 
 // State is just simply remembering what's going on 
+// State is the data associated with the applications current settings
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
