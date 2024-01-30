@@ -1,125 +1,85 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const MaterialApp(
+    home: MyApp(),
+  ));
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // TRY THIS: Try running your application with "flutter run". You'll see
-        // the application has a purple toolbar. Then, without quitting the app,
-        // try changing the seedColor in the colorScheme below to Colors.green
-        // and then invoke "hot reload" (save your changes or press the "hot
-        // reload" button in a Flutter-supported IDE, or press "r" if you used
-        // the command line to start the app).
-        //
-        // Notice that the counter didn't reset back to zero; the application
-        // state is not lost during the reload. To reset the state, use hot
-        // restart instead.
-        //
-        // This works for code too, not just values: Most code changes can be
-        // tested with just a hot reload.
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
-    );
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+
+  int? _value1 = 0;
+  int? _value2 = 0;
+
+  void _setValue1(int? value) => setState(() => _value1 = value);
+  void _setValue2(int? value) => setState(() => _value2 = value);
+
+  // User The argument type 'void Function(int)' can't be assigned to the parameter type 'void Function(int?)?'.
+  // dengan null safety, perlu menggunakan 'int?' untuk memberi tahu Dart bahwa variabel tersebut dapat berisi nilai null 
+  // dengan null safety, tipe data non-nullable seperti 'int' tidak dapat mengambil nilai null secara langsung
+  // oleh karena itu, deklarasi variabel seperti _value1 dengan tipe 'int?', itu berarti variabel tersebut dapat berisi nilai 'int' atau 'null'
+
+  // Radio option 
+  Widget makeRadios() {
+    List<Widget> list = <Widget>[]; // Explicitly declare the type <Widget>
+
+    for(int i = 0; i < 3; i++) {
+      list.add(Radio(value: i, groupValue: _value1, onChanged: _setValue1));
+      // ini adalah radionya, tetapi hanya dalam bentuk lingkaran untuk dipilih salah satu dan harus dipencet lingkarannya untuk dipilih
+    }
+
+    Column column = Column(children: list);
+    return column;
   }
-}
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
+  Widget makeRadioTiles() {
+    List<Widget> list = <Widget>[]; // Explicitly declare the type <Widget>
 
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
+    for(int i = 0; i < 3; i++) {
+      list.add(RadioListTile(
+        value: i, 
+        groupValue: _value2, 
+        onChanged: _setValue2,
+        activeColor: Colors.green,
+        controlAffinity: ListTileControlAffinity.trailing,
+        title: Text('Item: ${i}'),
+        subtitle: Text('sub title'),
+        ));
+      // ini adalah radio yang berbentuk tile, sehingga tidak harus dipencet lingkarannya untuk dipilih
+    }
 
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
+    Column column = Column(children: list);
+    return column;
   }
 
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
     return Scaffold(
       appBar: AppBar(
-        // TRY THIS: Try changing the color here to a specific color (to
-        // Colors.amber, perhaps?) and trigger a hot reload to see the AppBar
-        // change color while the other colors stay the same.
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
+        title: Text(
+          'Udemy Learn',
+          style: TextStyle(color: Colors.white),
+        ),
+        backgroundColor: Colors.blueAccent,
       ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          //
-          // TRY THIS: Invoke "debug painting" (choose the "Toggle Debug Paint"
-          // action in the IDE, or press "p" in the console), to see the
-          // wireframe for each widget.
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-          ],
+      body: Container(
+        padding: EdgeInsets.all(32.0),
+        child: Center(
+          child: Column(
+            children: <Widget>[
+              makeRadios(),
+              makeRadioTiles(),
+            ],
+          ),
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
