@@ -16,11 +16,9 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
 
-  bool _value1 = false;
-  bool _value2 = false;
+  double _value = 0.0;
 
-  void _onChanged1(bool value) => setState(() => _value1 = value );
-  void _onChanged2(bool value) => setState(() => _value2 = value );
+  void _setValue(double value) => setState(() => _value = value );
 
   @override
   // BuildContext = this is the context of which this method is being run, whether it's startup, shut down, refresh, etc.
@@ -35,12 +33,10 @@ class _MyAppState extends State<MyApp> {
         child: Center(
           child: Column(
             children: <Widget> [
-              Switch(value: _value1, onChanged: _onChanged1),
-              SwitchListTile(
-                value: _value2, 
-                onChanged: _onChanged2,
-                title: Text('Hello World', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.blue),),
-                )
+              Text('Value: ${(_value * 100).round()}'), 
+              // round = membulatkan angka desimal, tanpa round output yang dikeluarkan akan menjadi desimal
+              // _value * 100 = untuk memberikan jarak atau jangkauan nilai pada slider
+              Slider(value: _value, onChanged: _setValue)
             ],
           ),
         ),
