@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dart:async';
 
 void main() {
   runApp(const MaterialApp( // material app is an application that uses a material
@@ -16,9 +17,19 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
 
-  double _value = 0.0;
+  String _value = '';
 
-  void _setValue(double value) => setState(() => _value = value );
+  Future _selectDate() async {
+    DateTime? picked = await showDatePicker(
+      context: context, 
+      initialDate: DateTime(2022),
+      firstDate: DateTime(2020), 
+      lastDate: DateTime(2024)
+      );
+    if(picked != null) setState(() => _value = picked.toString());
+    // picked != null: Ini adalah kondisi yang memeriksa apakah pengguna benar-benar memilih tanggal dari date picker. Jika picked tidak null, artinya pengguna telah memilih tanggal.
+    // catatan ada di notion udemy9_datepicker 
+  }
 
   @override
   // BuildContext = this is the context of which this method is being run, whether it's startup, shut down, refresh, etc.
@@ -33,10 +44,8 @@ class _MyAppState extends State<MyApp> {
         child: Center(
           child: Column(
             children: <Widget> [
-              Text('Value: ${(_value * 100).round()}'), 
-              // round = membulatkan angka desimal, tanpa round output yang dikeluarkan akan menjadi desimal
-              // _value * 100 = untuk memberikan jarak atau jangkauan nilai pada slider
-              Slider(value: _value, onChanged: _setValue)
+              Text(_value),
+              ElevatedButton(onPressed: _selectDate, child: Text('Pick A Date'))
             ],
           ),
         ),
