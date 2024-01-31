@@ -19,10 +19,6 @@ class _MyAppState extends State<MyApp> {
 
   String _value = '';
 
-  void _onChange(String value) {
-    setState(() => _value = 'Change: ${value}');
-  }
-
   void _onSubmit(String value) {
     setState(() => _value = 'Submit: ${value}');
   }
@@ -50,7 +46,6 @@ class _MyAppState extends State<MyApp> {
                 autocorrect: true,
                 autofocus: true,
                 keyboardType: TextInputType.text,
-                onChanged: _onChange,
                 onSubmitted: _onSubmit,
               )
             ],
