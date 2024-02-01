@@ -18,10 +18,23 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
 
   String _value = '';
+  String _display = '';
 
-  void _onSubmit(String value) {
-    setState(() => _value = 'Submit: ${value}');
+  void _onChanged(String value) {
+    setState(() {
+      _value = value;
+    });
   }
+
+  void _onClick() {
+    setState(() {
+      _display = _value;
+    });
+  }
+
+  // _display > _value > value
+  // dimana _value ditulisan dalam fungsi diatas yang mengartikan bahwa _value memiliki nilai yang sama dengan value
+  // dan _display memiliki nilai yang sama dengan _value saat di click
 
   @override
   // BuildContext = this is the context of which this method is being run, whether it's startup, shut down, refresh, etc.
@@ -36,18 +49,15 @@ class _MyAppState extends State<MyApp> {
         child: Center(
           child: Column(
             children: <Widget> [
-              Text(_value),
+              Text(_display), // mengambil nilai display
               TextField(
-                decoration: InputDecoration(
-                  labelText: 'Hello',
-                  hintText: 'Type in',
-                  icon: Icon(Icons.people),
-                ),
                 autocorrect: true,
                 autofocus: true,
                 keyboardType: TextInputType.text,
-                onSubmitted: _onSubmit,
-              )
+                onChanged: _onChanged, // mengambil fungsi onChanged
+              ),
+              ElevatedButton(onPressed: _onClick, child: const Text('Submit')),
+              // mengambil fungsi _onClick
             ],
           ),
         ),
