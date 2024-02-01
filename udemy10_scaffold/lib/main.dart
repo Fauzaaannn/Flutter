@@ -38,6 +38,19 @@ class _MyAppState extends State<MyApp> {
         ],
       ),
 
+      drawer: Drawer(
+        child: Container(
+          padding: EdgeInsets.all(32.0),
+          child: Column( // column is part of layout, is it helps us move things around the screen, and it can takes a list of widgets
+            children: <Widget>[
+              Text('Hello World'),
+              ElevatedButton(onPressed: () => Navigator.pop(context), child: Text('Close')),
+              // Navigator allows us to navigate around not just within the same window, but other windows as well
+            ],
+          )
+        ),
+      ),
+
       floatingActionButton: FloatingActionButton(
         onPressed: _onClick, // button function
         backgroundColor: Colors.red,
