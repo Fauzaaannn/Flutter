@@ -16,13 +16,12 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
 
-  String _value = 'Hello World';
+  int _value = 0;
+  String _value1 = '';
 
-  void _onPressed() {
-    setState((){
-      _value = 'My Name is Fauzan';
-    });
-  }
+  void _add() => setState(() => _value++);
+  void _remove() => setState(() => _value--);
+  void _onClick() => setState(() => _value1 = DateTime.now().toString());
 
   @override
   // BuildContext = this is the context of which this method is being run, whether it's startup, shut down, refresh, etc.
@@ -30,14 +29,18 @@ class _MyAppState extends State<MyApp> {
     return Scaffold( // Scaffold is a structure on which you are going to build your material application
       appBar: AppBar(
         title: Text('Udemy Learn'),
+        backgroundColor: Colors.red,
+        actions: <Widget> [
+          IconButton(onPressed: _add, icon: Icon(Icons.add)),
+          IconButton(onPressed: _remove, icon: Icon(Icons.remove)),
+        ],
       ),
       body: Container(
         padding: EdgeInsets.all(32.0),
         child: Center(
           child: Column(
             children: <Widget> [
-              Text(_value),
-              ElevatedButton(onPressed: _onPressed, child: Text('Click me'))
+              Text(_value.toString(), style: TextStyle(fontWeight: FontWeight.bold, fontSize: 40),),
             ],
           ),
         ),
