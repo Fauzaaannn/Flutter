@@ -17,13 +17,15 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
 
   // variables declaration
-  int _value = 0;
-  String _value1 = '';
+  int _value = 0; // Appbar
+  String _value1 = ''; // date time
+  String _value2 = ''; // footer
 
   // functions
   void _add() => setState(() => _value++);
   void _remove() => setState(() => _value--);
   void _onClick() => setState(() => _value1 = DateTime.now().toString()); // convert integer date time to string
+  void _onClick1(String value) => setState(() => _value2 = value);  // footer 
 
   @override
   // BuildContext = this is the context of which this method is being run, whether it's startup, shut down, refresh, etc.
@@ -58,13 +60,20 @@ class _MyAppState extends State<MyApp> {
         child: Icon(Icons.timer),
       ),
 
+      persistentFooterButtons: [
+        IconButton(onPressed: () => _onClick1('Timer'), icon: Icon(Icons.timer)),
+        IconButton(onPressed: () => _onClick1('People'), icon: Icon(Icons.people)),
+        IconButton(onPressed: () => _onClick1('Map'), icon: Icon(Icons.map)),
+      ],
+
       body: Container(
         padding: EdgeInsets.all(32.0),
         child: Center(
           child: Column(
             children: <Widget> [
               Text(_value.toString(), style: TextStyle(fontWeight: FontWeight.bold, fontSize: 40),), // convert integer to string
-              Text(_value1) // date time for floating action button
+              Text(_value1), // date time for floating action button
+              Text(_value2)
             ],
           ),
         ),
