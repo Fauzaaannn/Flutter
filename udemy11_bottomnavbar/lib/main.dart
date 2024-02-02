@@ -16,12 +16,18 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
 
-  String _value = 'Hello World';
+  List<BottomNavigationBarItem> _items = []; // array
+  // mendeklarasikan bahwa _items akan menjadi sebuah list yang hanya dapat menyimpan banyak objek dari tipe BottomNavigationBarItem
+  String _value = ''; // string
+  int _index = 0; // integer
 
-  void _onPressed() {
-    setState((){
-      _value = 'My Name is Fauzan';
-    });
+  void initState() {
+    super.initState(); // initial state is the initial state of the state class, meaning before anything's really rendered on the screen for the first time. And this is where we can actually set some state items, set some things.
+    _items = <BottomNavigationBarItem> []; // menginisialisasi variabel _items sebagai list kosong
+    _items.add(BottomNavigationBarItem(icon: Icon(Icons.people), label: ('People')));
+    _items.add(BottomNavigationBarItem(icon: Icon(Icons.weekend), label: ('Weekend')));
+    _items.add(BottomNavigationBarItem(icon: Icon(Icons.message), label: ('Message')));
+    // dalam konteks aplikasi flutter ini, _items digunakan untuk menyimpan item-item yang akan ditampilkan dalam Bottom Navigation Bar pada aplikasi
   }
 
   @override
@@ -37,11 +43,21 @@ class _MyAppState extends State<MyApp> {
           child: Column(
             children: <Widget> [
               Text(_value),
-              ElevatedButton(onPressed: _onPressed, child: Text('Click me'))
             ],
           ),
         ),
       ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: _items,
+        fixedColor: Colors.blue,
+        currentIndex: _index,
+        onTap: (int item) { // when we tap one of them, we want to set that index
+          setState(() {
+            _index = item;
+            _value = 'Current Value is : ${_index.toString()}';
+          });
+        },
+        ),
     );
   }
 }
