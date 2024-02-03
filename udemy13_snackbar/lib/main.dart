@@ -14,20 +14,23 @@ class MyApp extends StatefulWidget {
   State<MyApp> createState() => _MyAppState();
 }
 
+// key = a key is a way of referencing the actual widget
+
 class _MyAppState extends State<MyApp> {
 
-  String _value = 'Hello World';
+  final GlobalKey<ScaffoldState> _scaffoldstate = GlobalKey<ScaffoldState>();
+  // GlobalKey = this means that it will be available accross the entire application no matter where you call it
 
-  void _onPressed() {
-    setState((){
-      _value = 'My Name is Fauzan';
-    });
+  void _showBar() {
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Hello World')));
   }
 
   @override
   // BuildContext = this is the context of which this method is being run, whether it's startup, shut down, refresh, etc.
   Widget build(BuildContext context) {
     return Scaffold( // Scaffold is a structure on which you are going to build your material application
+      key: _scaffoldstate,
+      // this scaffold has e key of scaffold state, meaning it's taking this object and making a reference to it in here
       appBar: AppBar(
         title: Text('Udemy Learn'),
       ),
@@ -36,8 +39,7 @@ class _MyAppState extends State<MyApp> {
         child: Center(
           child: Column(
             children: <Widget> [
-              Text(_value),
-              ElevatedButton(onPressed: _onPressed, child: Text('Click me'))
+              ElevatedButton(onPressed: _showBar, child: Text('Click me'))
             ],
           ),
         ),
