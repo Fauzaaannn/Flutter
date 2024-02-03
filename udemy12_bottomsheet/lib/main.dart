@@ -16,12 +16,23 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
 
-  String _value = 'Hello World';
-
-  void _onPressed() {
-    setState((){
-      _value = 'My Name is Fauzan';
-    });
+  void _showBottom() {
+    showModalBottomSheet<void>(
+      context: context, 
+      builder: (BuildContext context) {
+        return Container(
+          padding: EdgeInsets.all(15.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text('Some Data', style: TextStyle(color: Colors.red, fontWeight: FontWeight.bold),),
+              ElevatedButton(onPressed: () => Navigator.pop(context), child: Text('Close'))
+            ],
+          ),
+        );
+      },
+      );
+    // modal = it's the only thing that can be active in the application
   }
 
   @override
@@ -36,8 +47,8 @@ class _MyAppState extends State<MyApp> {
         child: Center(
           child: Column(
             children: <Widget> [
-              Text(_value),
-              ElevatedButton(onPressed: _onPressed, child: Text('Click me'))
+              Text('Click for Bottom Modal Sheet'),
+              ElevatedButton(onPressed: _showBottom, child: Text('Click me'))
             ],
           ),
         ),
