@@ -26,6 +26,7 @@ class _MyAppState extends State<MyApp> {
     return Scaffold( // Scaffold is a structure on which you are going to build your material application
       appBar: AppBar(
         title: Text('Udemy Learn'),
+        backgroundColor: Colors.blue,
       ),
 
       drawer: Drawer(
