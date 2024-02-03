@@ -16,13 +16,9 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
 
-  String _value = 'Hello World';
+  String _value = '';
 
-  void _onPressed() {
-    setState((){
-      _value = 'My Name is Fauzan';
-    });
-  }
+  void _onClick() => setState(() => _value = DateTime.now().toString());
 
   @override
   // BuildContext = this is the context of which this method is being run, whether it's startup, shut down, refresh, etc.
@@ -31,13 +27,26 @@ class _MyAppState extends State<MyApp> {
       appBar: AppBar(
         title: Text('Udemy Learn'),
       ),
+
+      drawer: Drawer(
+        child: Container(
+          padding: EdgeInsets.all(32.0),
+          child: Column(
+            children: <Widget>[
+              Text('Click to set Date and Time'),
+              ElevatedButton(onPressed: _onClick, child: Text('Set')),
+              ElevatedButton(onPressed: () => Navigator.pop(context), child: Text('Close')),
+            ],
+          ),
+        ),
+      ),
+
       body: Container(
         padding: EdgeInsets.all(32.0),
         child: Center(
           child: Column(
             children: <Widget> [
               Text(_value),
-              ElevatedButton(onPressed: _onPressed, child: Text('Click me'))
             ],
           ),
         ),
