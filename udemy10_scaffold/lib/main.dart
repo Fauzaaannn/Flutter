@@ -60,7 +60,7 @@ class _MyAppState extends State<MyApp> {
         child: Icon(Icons.timer),
       ),
 
-      persistentFooterButtons: [
+      persistentFooterButtons: [ // Footer buttons are an easy way to add widgets to the footer 
         IconButton(onPressed: () => _onClick1('Timer'), icon: Icon(Icons.timer)),
         IconButton(onPressed: () => _onClick1('People'), icon: Icon(Icons.people)),
         IconButton(onPressed: () => _onClick1('Map'), icon: Icon(Icons.map)),
