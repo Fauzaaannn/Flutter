@@ -33,10 +33,6 @@ class _MyAppState extends State<MyApp> {
     });
   }
 
-  // _display > _value > value
-  // dimana _value ditulisan dalam fungsi diatas yang mengartikan bahwa _value memiliki nilai yang sama dengan value
-  // dan _display memiliki nilai yang sama dengan _value saat di click
-
   @override
   // BuildContext = this is the context of which this method is being run, whether it's startup, shut down, refresh, etc.
   Widget build(BuildContext context) {
