@@ -7,6 +7,7 @@ void main() {
 }
 
 // State is just simply remembering what's going on 
+// State is the data associated with the applications current settings
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
@@ -16,28 +17,50 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
 
-  String _value = 'Hello World';
+  String _value = '';
+  String _display = '';
 
-  void _onPressed() {
-    setState((){
-      _value = 'My Name is Fauzan';
+  final GlobalKey<ScaffoldState> _scaffoldstate = GlobalKey<ScaffoldState>();
+
+  void _showBar() {
+    setState(() {
+      _display = _value;
+    });
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(_display)));
+  }
+
+  void _onChanged(String value) {
+    setState(() {
+      _value = value;
     });
   }
+
+  // _display > _value > value
+  // dimana _value ditulisan dalam fungsi diatas yang mengartikan bahwa _value memiliki nilai yang sama dengan value
+  // dan _display memiliki nilai yang sama dengan _value saat di click
 
   @override
   // BuildContext = this is the context of which this method is being run, whether it's startup, shut down, refresh, etc.
   Widget build(BuildContext context) {
     return Scaffold( // Scaffold is a structure on which you are going to build your material application
+      key: _scaffoldstate,
       appBar: AppBar(
-        title: Text('Udemy Learn'),
+        title: Text('Udemy Learn', style: TextStyle(color: Colors.white),),
+        backgroundColor: Colors.blueAccent,
       ),
       body: Container(
         padding: EdgeInsets.all(32.0),
         child: Center(
           child: Column(
             children: <Widget> [
-              Text(_value),
-              ElevatedButton(onPressed: _onPressed, child: Text('Click me'))
+              TextField(
+                autocorrect: true,
+                autofocus: true,
+                keyboardType: TextInputType.text,
+                onChanged: _onChanged, // mengambil fungsi onChanged
+              ),
+              ElevatedButton(onPressed: _showBar, child: const Text('Submit')),
+              // mengambil fungsi _showBar
             ],
           ),
         ),
