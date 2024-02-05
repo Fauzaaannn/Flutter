@@ -15,22 +15,42 @@ class MyApp extends StatefulWidget {
   State<MyApp> createState() => _MyAppState();
 }
 
+enum Answers{YES,NO,MAYBE}
+
 class _MyAppState extends State<MyApp> {
 
-  Future _showAlert(BuildContext context, String message) async {
-    return showDialog(
-      context: context, 
-      builder: (BuildContext context) {
-        return Container(
-          child: AlertDialog(
-          title: Text(message),
-          actions: [
-            TextButton(onPressed: () => Navigator.pop(context), child: Text('Ok'))
-          ],
-        ),
-        );
-      }
-      );
+  String _value = '';
+
+  void _setValue(String value) => setState(() => _value = value);
+
+  Future _askUser() async {
+    switch( // switch case 
+      await showDialog(
+        context: context,
+        builder: (BuildContext context) {
+         return Container(
+           child: SimpleDialog(
+            title: Text('Do you like Flutter?'),
+            children: <Widget>[
+              SimpleDialogOption(child: Text('Yes!'), onPressed: (){Navigator.pop(context, Answers.YES);},),
+              SimpleDialogOption(child: Text('Nope'), onPressed: (){Navigator.pop(context, Answers.NO);},),
+              SimpleDialogOption(child: Text('Maybe'), onPressed: (){Navigator.pop(context, Answers.MAYBE);},),
+            ]
+           ),
+         );
+        }
+      )
+    ) {
+      case Answers.YES:
+        _setValue('YES');
+        break;
+      case Answers.NO:
+        _setValue('NO');
+        break;
+      case Answers.MAYBE:
+        _setValue('MAYBE');
+        break;
+    }
   }
 
   @override
@@ -45,8 +65,8 @@ class _MyAppState extends State<MyApp> {
         child: Center(
           child: Column(
             children: <Widget> [
-              Text('Add Widget Here'),
-              ElevatedButton(onPressed: () => _showAlert(context, 'do you like flutter, I do!'), child: Text('Click me'))
+              Text(_value),
+              ElevatedButton(onPressed: _askUser, child: Text('Click me'))
             ],
           ),
         ),
