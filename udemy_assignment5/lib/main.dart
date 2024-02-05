@@ -15,6 +15,8 @@ class MyApp extends StatefulWidget {
   State<MyApp> createState() => _MyAppState();
 }
 
+// Allow the user to enter their name, and when a button is clicked, display a snackbar displaying their name.
+
 class _MyAppState extends State<MyApp> {
 
   String _value = '';
