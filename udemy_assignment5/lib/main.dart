@@ -20,15 +20,11 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
 
   String _value = '';
-  String _display = '';
 
   final GlobalKey<ScaffoldState> _scaffoldstate = GlobalKey<ScaffoldState>();
 
-  void _showBar() {
-    setState(() {
-      _display = _value;
-    });
-    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(_display)));
+  void _showBar(String message) {
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(message)));
   }
 
   void _onChanged(String value) {
@@ -55,13 +51,11 @@ class _MyAppState extends State<MyApp> {
         child: Center(
           child: Column(
             children: <Widget> [
+              Text('Input Name Here'),
               TextField(
-                autocorrect: true,
-                autofocus: true,
-                keyboardType: TextInputType.text,
                 onChanged: _onChanged, // mengambil fungsi onChanged
               ),
-              ElevatedButton(onPressed: _showBar, child: const Text('Submit')),
+              ElevatedButton(onPressed: () => _showBar('Hello ${_value}'), child: const Text('Submit')),
               // mengambil fungsi _showBar
             ],
           ),
