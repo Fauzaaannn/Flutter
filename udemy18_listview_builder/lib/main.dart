@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'dart:async';
+// import 'dart:async';
 import 'dart:convert';
-import 'dart:io';
+// import 'dart:io';
 
 
 void main() {
@@ -26,9 +26,9 @@ class _MyAppState extends State<MyApp> {
   void _getData() async {
     var url = 'http://country.io/names.json'; // return a two letter representation of the country along with the full name, so we're getting a map in json form
     // json is a different way of representing data in a text format
-    var response = await http.get(url as Uri);
+    var response = await http.get(Uri.parse(url));
 
-    // 200 means the server returned the data 
+    // 200 means the server returned the data okay and there were no issues 
     if (response.statusCode == 200) { 
       setState(() => _countries = json.decode(response.body));
       print('Loaded ${_countries.length} countries');
@@ -40,22 +40,41 @@ class _MyAppState extends State<MyApp> {
   @override
   // BuildContext = this is the context of which this method is being run, whether it's startup, shut down, refresh, etc.
   Widget build(BuildContext context) {
+
     return Scaffold( // Scaffold is a structure on which you are going to build your material application
       appBar: AppBar(
         title: Text('Udemy Learn'),
       ),
       body: Container(
-        color: Colors.grey[300],
         padding: EdgeInsets.all(32.0),
         child: Center(
           child: Column(
             children: <Widget> [
-              Text('Images Demo'),
-              
+              Text('Countries', style: TextStyle(fontWeight: FontWeight.bold),),
+              Expanded(
+                child: ListView.builder(
+                  itemCount: _countries.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    String key = _countries.keys.elementAt(index);
+                    return Row(
+                      children: [
+                        Text('${key} : '),
+                        Text(_countries[key])
+                      ],
+                    );
+                  },
+                  ),
+                )
             ],
           ),
         ),
       ),
     );
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _getData();
   }
 }
