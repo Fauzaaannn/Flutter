@@ -16,14 +16,6 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
 
-  String _value = 'Hello World';
-
-  void _onPressed() {
-    setState((){
-      _value = 'My Name is Fauzan';
-    });
-  }
-
   @override
   // BuildContext = this is the context of which this method is being run, whether it's startup, shut down, refresh, etc.
   Widget build(BuildContext context) {
@@ -32,12 +24,15 @@ class _MyAppState extends State<MyApp> {
         title: Text('Udemy Learn'),
       ),
       body: Container(
+        color: Colors.grey[300],
         padding: EdgeInsets.all(32.0),
         child: Center(
           child: Column(
             children: <Widget> [
-              Text(_value),
-              ElevatedButton(onPressed: _onPressed, child: Text('Click me'))
+              Text('Images Demo'),
+              Expanded(child: Image.asset('images/flutter.jpg')),
+              Expanded(child: Image.asset('images/flutter.jpg')),
+              // Expanded = it determines how much area of the screen you actually need to work with this
             ],
           ),
         ),
